@@ -1,7 +1,7 @@
 // Creamos el tipo de fichas
 export const TURNS = {
-    X: "X",
-    O: "O",
+    X: "👹",
+    O: "🩻",
   };
   
   

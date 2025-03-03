@@ -1,4 +1,4 @@
-import { winner_combos } from "../constants.js";
+import { winner_combos } from "../Components/constants.js";
 
 //------------------------------------------------
 
@@ -19,6 +19,6 @@ export const checkWinnerFrom = (boardToCheck) => {
 };
 
 export const checkEndGame = (newBoard) => {
-    // Revisamos si hay un empate
-    return newBoard.every((square) => square !== null);
-  };
+  // Revisamos si hay un empate
+  return newBoard.every((square) => square !== null);
+};

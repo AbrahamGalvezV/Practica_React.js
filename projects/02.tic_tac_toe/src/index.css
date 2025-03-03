@@ -5,7 +5,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: #9000ff;
   background-color: #242424;
 
   font-synthesis: none;
@@ -27,6 +27,9 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Creepster", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .board {
@@ -36,25 +39,26 @@ body {
 }
 
 .board h1 {
-  color: #eee;
-  margin-bottom: 16px;
+  padding: 10px 0px 30px 0px;
+  font-size: 70px;
+  color: #9000ff;
 }
 
 .board button {
-  padding: 8px 12px;
-  margin: 25px;
+  height: 40px;
   background: transparent;
-  border: 2px solid #eee;
-  color: #eee;
-  width: 100px;
-  border-radius: 5px;
-  transition: 0.2s;
+  border: 2px solid #9000ff;
+  color: #9000ff;
+  width: 140px;
+  border-radius: 10px;
+  transition: 0.4s;
   font-weight: bold;
+  font-size: 20px;
   cursor: pointer;
 }
 
 .board button:hover {
-  background: #eee;
+  background: #9000ff;
   color: #222;
 }
 
@@ -66,6 +70,7 @@ body {
 
 .turn {
   display: flex;
+  border: 2px solid #9000ff;
   justify-content: center;
   margin: 15px auto;
   width: fit-content;
@@ -83,7 +88,7 @@ body {
 
 .square.is-selected {
   color: #fff;
-  background: #09f;
+  background: rgb(149, 0, 255);
 }
 
 .winner {
@@ -101,7 +106,7 @@ body {
   background: #111;
   height: 300px;
   width: 320px;
-  border: 2px solid #eee;
+  border: 2px solid #9000ff;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -121,7 +126,7 @@ body {
 .square {
   width: 100px;
   height: 100px;
-  border: 2px solid #eee;
+  border: 2px solid #9000ff;
   border-radius: 5px;
   display: grid;
   place-items: center;

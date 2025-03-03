@@ -2,8 +2,10 @@ import "./App.css";
 import { useState } from "react";
 import { Square } from "./Components/Square";
 import { TURNS } from "./Components/constants";
-import { checkWinnerFrom } from "./Components/Logic/board";
+import { checkWinnerFrom, checkEndGame } from "./Logic/board";
 import { WinnerModal } from "./Components/WinnerModal";
+import { Board } from "./Components/Board";
+import { TurnIndicator } from "./Components/TurnIndicator";
 import confetti from "canvas-confetti";
 
 //--------------------------------------------------------------------------
@@ -50,29 +52,13 @@ function App() {
   return (
     <main className="board">
       <h1>Tic Tac Toe</h1>
+
+      <Board board={board} updateBoard={updateBoard} />
+
+      <TurnIndicator turn={turn} />
       <button onClick={resetGame}>Reset del juego</button>
 
-      {/* Tablero de juego */}
-      <section className="game">
-        {board.map((square, index) => (
-          <Square
-            key={index}
-            index={index}
-            updateBoard={updateBoard}
-          >
-            {square}
-          </Square>
-        ))}
-      </section>
-
-      {/* Turno actual */}
-      <section className="turn">
-        <Square isSelected={turn === TURNS.X}>{TURNS.X}</Square>
-        <Square isSelected={turn === TURNS.O}>{TURNS.O}</Square>
-      </section>
-
-        <WinnerModal resetGame={resetGame} winner={winner} />
-
+      <WinnerModal resetGame={resetGame} winner={winner} />
     </main>
   );
 }
