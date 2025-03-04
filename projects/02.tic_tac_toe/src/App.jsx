@@ -6,15 +6,28 @@ import { checkWinnerFrom, checkEndGame } from "./Logic/board";
 import { WinnerModal } from "./Components/WinnerModal";
 import { Board } from "./Components/Board";
 import { TurnIndicator } from "./Components/TurnIndicator";
+import { saveGameToStorage, resetGameStorage } from "./Logic/Storage";
 import confetti from "canvas-confetti";
 
 //--------------------------------------------------------------------------
 
 function App() {
   // Estado para el tablero (9 casillas vacías)
-  const [board, setBoard] = useState(Array(9).fill(null));
+  const [board, setBoard] = useState(() => {
+    const boardFromStorage = window.localStorage.getItem('board')
+    if (boardFromStorage) return JSON.parse(boardFromStorage)
+      return (Array(9).fill(null));
+  })
+  
+
+
   // Estado para alternar turnos
-  const [turn, setTurn] = useState(TURNS.X);
+  const [turn, setTurn] = useState (() => {
+    const turnFromStorage = window.localStorage.getItem('turn')
+    return turnFromStorage ?? TURNS.X;
+  })
+
+
   // null = no hay ganador / false = empate
   const [winner, setWinner] = useState(null);
 
@@ -23,6 +36,8 @@ function App() {
     setBoard(Array(9).fill(null));
     setTurn(TURNS.X);
     setWinner(null);
+
+    resetGameStorage()
   };
 
   // Función para actualizar tablero y cambiar turnos
@@ -38,6 +53,11 @@ function App() {
     // Cambiar el turno
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X;
     setTurn(newTurn);
+    // Guardar la patida
+    saveGameToStorage({
+      board: newBoard,
+      turn: newTurn
+    })
 
     // Revisar si hay un ganador
     const newWinner = checkWinnerFrom(newBoard);
