@@ -12,3 +12,7 @@ APIs:
 - Facts Ramdom: https://catfact.ninja/fact
 - Image random: https://cataas.com/cat/says/hello
 * Enpoint para usar: `https://cataas.com/cat/says/hello${firsWord}?fontSize=50&fontColor=red&json=true`
+
+
+
+
