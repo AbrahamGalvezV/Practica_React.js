@@ -1,10 +1,10 @@
 1. Ecommerce
 
-- Muestra un a lista de productos que vienen de un JSON
-- Añade un Filtro por categoría
-- Añade un filtro por precio
+- ✅ Muestra un a lista de productos que vienen de un JSON
+- ✅ Añade un Filtro por categoría
+- ✅ Añade un filtro por precio
 
-Haz uso de useContext para evitar pasar props innecesarios
+- Haz uso de useContext para evitar pasar props innecesarios
 
 2. Shopping Car
 
