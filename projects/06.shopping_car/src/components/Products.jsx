@@ -2,7 +2,6 @@ import { AddToCartIcon } from './Icons';
 import './Products.css';
 
 export function Products({ products = [] }) { // Evita undefined pasando un array vacío por defecto
-    console.log(products); // Asegura que `products` es un array antes de usar slice
 
     return (
         <main className="products">
