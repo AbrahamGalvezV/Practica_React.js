@@ -34,6 +34,14 @@
     opacity: .9;
 }
 
+.buttonChange {
+    color: rgb(229, 229, 229);
+}
+
+.in-cart {
+    color: rgb(136, 255, 0);
+}
+
 /* .products img {
     border-radius: 4px;
     width: 100%;
