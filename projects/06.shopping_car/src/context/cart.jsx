@@ -1,25 +1,75 @@
-// context/cart.jsx
-import { createContext, useState } from "react";
+import { createContext, useReducer } from "react";
 
+// 1. Crear el contexto
 export const CartContext = createContext();
 
+const initialState = [];
+
+const reducer = (state, action) => {
+  const { type: actionType, payload: actionPayload } = action;
+
+  switch (actionType) {
+    case 'ADD_TO_CART': {
+      const { id } = actionPayload;
+      const productInCartIndex = state.findIndex(item => item.id === id);
+
+      if (productInCartIndex >= 0) {
+        const newState = structuredClone(state);
+        newState[productInCartIndex].quantity += 1;
+        return newState;
+      }
+
+      return [
+        ...state,
+        {
+          ...actionPayload,
+          quantity: 1
+        }
+      ];
+    }
+
+    case 'REMOVE_FROM_CART': {
+      const { id } = actionPayload;
+      return state.filter(item => item.id !== id);
+    }
+
+    case 'CLEAR_CART': {
+      return initialState;
+    }
+
+    default:
+      return state;
+  }
+};
+
+// 2. Crear provider
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState([]);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  const addToCart = (product) => {
-    setCart(prevCart => [...prevCart, product]);
-  };
+  const addToCart = product =>
+    dispatch({
+      type: 'ADD_TO_CART',
+      payload: product
+    });
 
-  const removeFromCart = (product) => {
-    setCart(prevCart => prevCart.filter(item => item.id !== product.id));
-  };
+  const removeFromCart = product =>
+    dispatch({
+      type: 'REMOVE_FROM_CART',
+      payload: product
+    });
+
+  const clearCart = () =>
+    dispatch({ type: 'CLEAR_CART' });
 
   return (
-    <CartContext.Provider value={{
-      cart,
-      addToCart,
-      removeFromCart
-    }}>
+    <CartContext.Provider
+      value={{
+        cart: state,
+        addToCart,
+        removeFromCart,
+        clearCart
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
