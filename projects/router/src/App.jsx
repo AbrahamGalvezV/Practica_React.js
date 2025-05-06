@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import { EVENTS } from "./consts";
 
 //---------------------------------------------------------------
 
@@ -7,7 +8,7 @@ const NAVIGATION_EVENT = "pushstate";
 
 function navigate(href) {
   window.history.pushState({}, "", href); // Cambia la URL sin refrescar la página
-  const navigationEvent = new Event("NAVIGATION_EVENT");
+  const navigationEvent = new Event(EVENTS.PUSHSTATE);
   window.dispatchEvent(navigationEvent); // Notifica a React que la URL ha cambiado
 }
 
@@ -21,7 +22,7 @@ function HomePage() {
   );
 }
 
-function AbautPage() {
+function AboutPage() {
   return (
     <>
       <h1>Abaut</h1>
@@ -37,7 +38,7 @@ function AbautPage() {
   );
 }
 
-function App() {
+function App () {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   useEffect(() => {
@@ -45,17 +46,19 @@ function App() {
       setCurrentPath(window.location.pathname)
     }
 
-    window.addEventListener(NAVIGATION_EVENT, onLocationChange)
+    window.addEventListener(EVENTS.PUSHSTATE, onLocationChange)
+    window.addEventListener(EVENTS.PUSHSTATE, onLocationChange)
 
     return () => {
-      window.removeEventListener(NAVIGATION_EVENT,onLocationChange)
+      window.removeEventListener(EVENTS.PUSHSTATE, onLocationChange)
+      window.removeEventListener(EVENTS.PUSHSTATE, onLocationChange)
     }
   }, []);
 
   return (
     <main>
-      {currentPath === "/" && <HomePage />}
-      {currentPath === "/about" && <AbautPage />}
+      {currentPath === '/' && <HomePage />}
+      {currentPath === '/about' && <AboutPage />}
     </main>
   );
 }
