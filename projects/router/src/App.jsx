@@ -3,12 +3,12 @@ import "./App.css";
 
 //---------------------------------------------------------------
 
-const NAVIGATE_EVENT = "pushstate";
+const NAVIGATION_EVENT = "pushstate";
 
 function navigate(href) {
-  window.history.pushState({}, "", href);
-  const navigationEvent = new Event("NAVIGATE_EVENT");
-  window.dispatchEvent(navigationEvent);
+  window.history.pushState({}, "", href); // Cambia la URL sin refrescar la página
+  const navigationEvent = new Event("NAVIGATION_EVENT");
+  window.dispatchEvent(navigationEvent); // Notifica a React que la URL ha cambiado
 }
 
 function HomePage() {
@@ -16,7 +16,7 @@ function HomePage() {
     <>
       <h1>Home</h1>
       <p>Esta es una página de ejemplo para crear un React Router desde cero</p>
-      <a href="/about">Ir a Sobre nosotros</a>
+      <button onClick={() => navigate('/about')}>Ir a Sobre nosotros</button>
     </>
   );
 }
@@ -32,7 +32,7 @@ function AbautPage() {
         />
       </div>
       <p>Estamos creando un clon de React Router</p>
-      <a href="/">Ir a Home</a>
+      <button onClick={() => navigate('/')}>Ir a Home</button>
     </>
   );
 }
@@ -43,6 +43,12 @@ function App() {
   useEffect(() => {
     const onLocationChange = () => {
       setCurrentPath(window.location.pathname)
+    }
+
+    window.addEventListener(NAVIGATION_EVENT, onLocationChange)
+
+    return () => {
+      window.removeEventListener(NAVIGATION_EVENT,onLocationChange)
     }
   }, []);
 

@@ -1,7 +1,6 @@
 - [X] Instalar linter
 - [X] Crea una forma de hacer MPAs (Multiple Paga Aplications)
-- [] Crea una forma de hacer SPAs (Single Page Aplications)
-- [] Poder navegar entre páginas con el botón de atrás
+- [X] Poder navegar entre páginas con el botón de atrás
 - [] Crea el componente Link para hacerlo declarativo
 - [] Crea el componente Router para jacerlo más declarativo
 - [] Soportar rutas por defecto (404)
