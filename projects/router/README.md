@@ -4,7 +4,7 @@
 - [X] Poder navegar entre páginas con el botón de atrás
 - [X] Crea el componente Router para jacerlo más declarativo
 - [X] Soportar rutas por defecto (404)
-- [] Soportar rutas con parámetros
+- [X] Soportar rutas con parámetros
 - [] Componente <Router /> para hacerlo declarativo
 - [] Lacy Loading de las rutas
 - [] Testing
